@@ -1,10 +1,7 @@
-let
-  pkgs = import <nixpkgs> {
-    config = { allowUnfree = true; };
-  };
-in
-pkgs.mkShell {
-  nativeBuildInputs = with pkgs; [
+{ pkgs ? import <nixpkgs> { } }:
+with pkgs;
+mkShell {
+  nativeBuildInputs = [
     pkg-config
     gobject-introspection
     cargo
@@ -12,7 +9,7 @@ pkgs.mkShell {
     nodejs
   ];
 
-  buildInputs = with pkgs;[
+  buildInputs = [
     at-spi2-atk
     atkmm
     cairo
@@ -35,7 +32,9 @@ pkgs.mkShell {
   shellHook = ''
     # export ANDROID_SDK_ROOT=$(nix eval --raw nixpkgs.androidsdk)
     # export ANDROID_NDK_ROOT=$(nix eval --raw nixpkgs.androidndk)
+    echo "entered shell"
     export ANDROID_HOME="$HOME/Android/Sdk"
     export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
+    export JAVA_HOME="${pkgs.android-studio}/jbr"
   '';
 }
