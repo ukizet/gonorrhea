@@ -29,6 +29,7 @@ mkShell {
     rustc
     rustup
     zlib
+    bun
   ];
   shellHook = ''
     # export ANDROID_SDK_ROOT=$(nix eval --raw nixpkgs.androidsdk)
