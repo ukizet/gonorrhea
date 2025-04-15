@@ -12,6 +12,28 @@
   packages = with pkgs; [ 
     git
     cargo
+    pkg-config
+    gobject-introspection
+    cargo
+    cargo-tauri
+    nodejs
+    at-spi2-atk
+    atkmm
+    cairo
+    gdk-pixbuf
+    glib
+    gtk3
+    harfbuzz
+    librsvg
+    libsoup_3
+    pango
+    webkitgtk_4_1
+    openssl
+    openjdk11
+    gradle
+    rustc
+    zlib
+    bun
   ];
 
   # https://devenv.sh/languages/
@@ -27,6 +49,7 @@
   scripts.hello.exec = ''
     echo hello from $GREET
   '';
+  scripts.start.exec = ''bun run tauri android dev'';
 
   enterShell = ''
     hello
