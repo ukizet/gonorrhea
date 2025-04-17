@@ -3,6 +3,7 @@
 {
   # https://devenv.sh/basics/
   env.GREET = "devenv";
+  env.NDK_HOME = "${config.env.ANDROID_NDK_ROOT}26.1.10909125"; 
 
   android.enable = true;
 
@@ -48,6 +49,7 @@
   # https://devenv.sh/scripts/
   scripts.hello.exec = ''
     echo hello from $GREET
+    echo $NDK_HOME
   '';
   scripts.start.exec = ''bun run tauri android dev'';
 
