@@ -7,33 +7,35 @@
 
   android.enable = true;
 
-  languages.javascript.enable = true;
+  languages = {
+    javascript.enable = true;
+    rust.enable = true;
+  };
 
   # https://devenv.sh/packages/
   packages = with pkgs; [ 
     git
-    cargo
     pkg-config
-    gobject-introspection
-    cargo
-    cargo-tauri
-    nodejs
     at-spi2-atk
     atkmm
     cairo
     gdk-pixbuf
     glib
     gtk3
+    webkitgtk_4_1
     harfbuzz
     librsvg
     libsoup_3
     pango
-    webkitgtk_4_1
     openssl
     openjdk11
     gradle
-    rustc
     zlib
+    cargo
+    cargo-tauri
+    # rustc
+    gobject-introspection
+    nodejs
     bun
   ];
 
@@ -49,9 +51,9 @@
   # https://devenv.sh/scripts/
   scripts.hello.exec = ''
     echo hello from $GREET
-    echo $NDK_HOME
+    echo NDK_HOME=$NDK_HOME || echo NDK_HOME not set!!
   '';
-  scripts.start.exec = ''bun run tauri android dev'';
+  scripts.start.exec = ''bun install && bun run tauri android dev'';
 
   enterShell = ''
     hello
