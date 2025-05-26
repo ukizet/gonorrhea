@@ -2,6 +2,8 @@
 
 {
   # https://devenv.sh/basics/
+  # /nix/store/3bhlykx0dp1rbd5z04sk40f3lapwalp4-androidsdk/libexec/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/x86_64-linux-android21-clang
+
   env.GREET = "devenv";
   env.NDK_HOME = "${config.env.ANDROID_NDK_ROOT}26.1.10909125"; 
 
@@ -34,6 +36,7 @@
     cargo
     cargo-tauri
     # rustc
+    rustup
     gobject-introspection
     nodejs
     bun
