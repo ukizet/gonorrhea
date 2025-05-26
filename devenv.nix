@@ -8,6 +8,8 @@
     GREET = "devenv";
     NDK_HOME = "${config.env.ANDROID_NDK_ROOT}26.1.10909125"; 
     PATH = "$HOME/.cargo/bin:$PATH";
+    AVD_NAME = "my-android-emulator-name";
+    IMAGE = "system-images;android-32;google_apis_playstore;x86_64";
   };
 
   android.enable = true;
@@ -57,11 +59,14 @@
   # services.postgres.enable = true;
 
   # https://devenv.sh/scripts/
-  scripts.hello.exec = ''
-    echo hello from $GREET
-    echo NDK_HOME=$NDK_HOME || echo NDK_HOME not set!!
-  '';
-  scripts.start.exec = ''bun install && bun run tauri android dev'';
+  scripts = {
+    hello.exec = ''
+      echo hello from $GREET
+      echo NDK_HOME=$NDK_HOME || echo NDK_HOME not set!!
+    '';
+    start.exec = ''bun install && bun run tauri android dev'';
+    emulator.exec = ''avdmanager create avd --force --name my-android-emulator-name --package "system-images;android-32;google_apis_playstore;x86_64"'';
+  };
 
   enterShell = ''
     hello
