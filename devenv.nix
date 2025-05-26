@@ -4,14 +4,17 @@
   # https://devenv.sh/basics/
   # /nix/store/3bhlykx0dp1rbd5z04sk40f3lapwalp4-androidsdk/libexec/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/x86_64-linux-android21-clang
 
-  env.GREET = "devenv";
-  env.NDK_HOME = "${config.env.ANDROID_NDK_ROOT}26.1.10909125"; 
+  env = {
+    GREET = "devenv";
+    NDK_HOME = "${config.env.ANDROID_NDK_ROOT}26.1.10909125"; 
+    PATH = "$HOME/.cargo/bin:$PATH";
+  };
 
   android.enable = true;
 
   languages = {
     javascript.enable = true;
-    rust.enable = true;
+    # rust.enable = true;
   };
 
   # https://devenv.sh/packages/
@@ -40,6 +43,8 @@
     gobject-introspection
     nodejs
     bun
+    libxslt
+    libxml2
   ];
 
   # https://devenv.sh/languages/
